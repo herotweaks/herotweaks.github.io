@@ -522,29 +522,6 @@
     .opt-hi { color: #e9e9e9; }
 
 
-    /* CUSTOM CURSOR — seta branca (arrow) minimalista + halo suave */
-    html, body, a, button, [role="button"], .ripple-fx, .lang-card, summary, .brand-btn, .secondary-btn, textarea, input, select, .term { cursor: none !important; }
-    #cursor-arrow {
-      position: fixed; top: 0; left: 0; z-index: 10000; pointer-events: none; opacity: 0;
-      width: 22px; height: 22px;
-      transform: translate(-2px, -1px) scale(1);
-      transition: opacity .2s ease, transform .12s cubic-bezier(.2,.8,.2,1);
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.65));
-      will-change: transform;
-    }
-    #cursor-halo {
-      position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; opacity: 0;
-      width: 34px; height: 34px; border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.22);
-      transform: translate(-50%, -50%);
-      transition: width .25s cubic-bezier(.2,.8,.2,1), height .25s cubic-bezier(.2,.8,.2,1), border-color .2s ease, opacity .2s ease;
-      will-change: transform;
-    }
-    body.cursor-hover #cursor-halo { width: 48px; height: 48px; border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); }
-    body.cursor-active #cursor-arrow { transform: translate(-2px,-1px) scale(0.86); }
-    body.cursor-active #cursor-halo { width: 26px; height: 26px; }
-    @media (hover: none) { #cursor-arrow, #cursor-halo { display: none !important; } html, body, a, button, .term { cursor: auto !important; } }
-
     /* ============ TERMOS DIDÁTICOS (tooltip) ============ */
     .term, .opt-hi {
       color: #ffffff; font-weight: 600;
@@ -1167,6 +1144,36 @@
       }
     }
 
+    /* ============ NAV APP BADGE ============ */
+    .nav-app-link {
+      display: inline-flex !important;
+      align-items: center;
+      gap: 0.4rem;
+      color: #ffffff !important;
+      font-weight: 600 !important;
+    }
+    .nav-new-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #080808;
+      line-height: 1;
+      position: relative;
+      top: -1px;
+      animation: navBadgePop 2.5s ease-in-out infinite;
+    }
+    @keyframes navBadgePop {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.08); }
+    }
+    /* ============ FIM NAV APP BADGE ============ */
+
     /* ============ SEÇÃO APP ============ */
     .app-section {
       border-top: 1px solid var(--border);
@@ -1409,12 +1416,11 @@
       <nav class="nav-links">
         <a href="#servicos" data-i18n="nav.services">Serviços</a>
         <a href="#processo" data-i18n="nav.process">Como funciona</a>
-        <a href="#passos" data-i18n="nav.steps">Passos</a>
-        <a href="#valores" data-i18n="nav.values">Valores</a>
-        <a href="#dados" data-i18n="nav.data">Dados</a>
         <a href="#depoimentos" data-i18n="nav.results">Resultados</a>
-        <a href="#faq" data-i18n="nav.faq">FAQ</a>
-        <a href="#" onclick="openTicket();return false;" data-i18n="nav.support">Suporte</a>
+        <a href="#app" class="nav-app-link">
+          Aplicativo
+          <span class="nav-new-badge">Novo</span>
+        </a>
         <a href="sobre.html" data-i18n="nav.about">Sobre Mim</a>
       </nav>
       <div class="nav-right">
@@ -3374,8 +3380,7 @@ function gtOpenWhatsApp(text){ try { window.open('https://api.whatsapp.com/send/
   new MutationObserver(function(){ scan(); }).observe(document.body, { childList: true, subtree: true });
 })();
 </script>
-<div id="cursor-halo"></div>
-<svg id="cursor-arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 2.5 19 12.2l-6.4.7 3.4 7.1-2.6 1.2-3.4-7.2L5 18.6z" fill="#0b0b0b" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+th="1.6" stroke-linejoin="round"/></svg>
 <script>
 (function(){
   var track = document.getElementById('tcTrack');
@@ -3446,36 +3451,6 @@ function gtOpenWhatsApp(text){ try { window.open('https://api.whatsapp.com/send/
     buildDots();
     update();
   });
-})();
-
-(function(){
-  if (matchMedia('(hover: none)').matches) return;
-  var dot = document.getElementById('cursor-arrow');
-  var ring = document.getElementById('cursor-halo');
-  var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0, started = false;
-
-  document.addEventListener('mousemove', function(e){
-    mouseX = e.clientX; mouseY = e.clientY;
-    dot.style.transform = 'translate('+mouseX+'px,'+mouseY+'px) translate(-50%,-50%)';
-    if (!started){ ringX = mouseX; ringY = mouseY; started = true; }
-    dot.style.opacity = '1'; ring.style.opacity = '1';
-  });
-
-  function tick(){
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
-    ring.style.transform = 'translate('+ringX+'px,'+ringY+'px) translate(-50%,-50%)';
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-
-  var hoverSel = 'a,button,[role=button],summary,.ripple-fx,.lang-card,.opt-badge,textarea,input,.faq-item';
-  document.addEventListener('mouseover', function(e){ if(e.target.closest(hoverSel)) document.body.classList.add('cursor-hover'); });
-  document.addEventListener('mouseout',  function(e){ if(e.target.closest(hoverSel)) document.body.classList.remove('cursor-hover'); });
-  document.addEventListener('mousedown', function(){ document.body.classList.add('cursor-active'); });
-  document.addEventListener('mouseup',   function(){ document.body.classList.remove('cursor-active'); });
-  document.addEventListener('mouseleave', function(){ dot.style.opacity='0'; ring.style.opacity='0'; });
-  document.addEventListener('mouseenter', function(){ dot.style.opacity='1'; ring.style.opacity='1'; });
 })();
 
 /* Reveal suave das seções ao rolar */
