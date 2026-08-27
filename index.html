@@ -1166,6 +1166,198 @@
         transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1) !important;
       }
     }
+
+    /* ============ SEÇÃO APP ============ */
+    .app-section {
+      border-top: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(20,20,25,0.6) 0%, rgba(10,10,15,0.9) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .app-section::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(var(--accent-rgb, 99,102,241), 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .app-grid {
+      display: grid;
+      gap: 3.5rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .app-grid { grid-template-columns: 1fr 1fr; gap: 4rem; }
+    }
+
+    /* Vídeo */
+    .app-video-wrap {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.07);
+      background: #0a0a0f;
+    }
+    .app-video-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      z-index: 2;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .app-badge-presale { background: rgba(255,255,255,0.08) !important; }
+    .app-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 0 0 rgba(255,255,255,0.6);
+      animation: badgePulse 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes badgePulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+      70%  { box-shadow: 0 0 0 7px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .app-video {
+      width: 100%;
+      display: block;
+      border-radius: 1.25rem;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    /* Copy */
+    .app-title { line-height: 1.15; }
+    .app-title-highlight {
+      color: #ffffff;
+      font-weight: 900;
+      text-shadow: 0 0 40px rgba(255,255,255,0.35);
+    }
+    .app-label {
+      color: #ffffff !important;
+      opacity: 0.65;
+      font-weight: 600;
+    }
+    .app-desc {
+      margin-top: 1.25rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.975rem;
+    }
+    .app-strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .app-features {
+      list-style: none;
+      margin: 2rem 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .app-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .app-feature-icon {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.05rem;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* Stats */
+    .app-stats {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding: 1.25rem 1.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0.875rem;
+    }
+    .app-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      text-align: center;
+    }
+    .app-stat strong {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+    }
+    .app-stat span {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .app-stat-divider {
+      width: 1px;
+      height: 2.5rem;
+      background: rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+
+    /* CTA */
+    .app-cta-row {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .app-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: fit-content;
+      font-size: 0.95rem;
+      padding: 1rem 1.75rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .app-cta-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .app-cta-note {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+    }
+    /* ============ FIM SEÇÃO APP ============ */
 </style>
 </head>
 <body>
@@ -1834,6 +2026,103 @@
       </div>
     </div>
   </section>
+
+
+  <!-- ===== SEÇÃO: CONHEÇA O APP ===== -->
+  <section id="app" class="app-section">
+    <div class="container-x app-grid">
+
+      <!-- Lado esquerdo: vídeo -->
+      <div class="app-video-wrap">
+        <div class="app-video-badge app-badge-presale">
+          <span class="app-badge-dot"></span>
+          Pré-venda · Vagas limitadas
+        </div>
+        <video
+          class="app-video"
+          src="DIAGNÓSTICO COMPLETO DA MAQUINA.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          controls
+          aria-label="Demonstração do aplicativo GustavoTweaks rodando diagnóstico completo do PC"
+        ></video>
+      </div>
+
+      <!-- Lado direito: copy -->
+      <div class="app-copy">
+        <p class="section-label app-label">Tecnologia exclusiva · Pré-venda aberta</p>
+        <h2 class="section-title app-title">
+          Conheça o meu<br>
+          <span class="app-title-highlight">Aplicativo</span>
+        </h2>
+        <p class="app-desc">
+          Otimize seu PC com apenas <strong class="app-strong">um clique</strong>. Desenvolvido por mim do zero, o app GustavoTweaks é um dos mais avançados do Brasil — resultado de anos ajustando hardware, analisando dados reais e refinando cada detalhe para extrair o máximo da sua máquina.
+        </p>
+
+        <ul class="app-features">
+          <li class="app-feature-item">
+            <span class="app-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span><strong class="app-strong">Diagnóstico completo</strong> da máquina em segundos</span>
+          </li>
+          <li class="app-feature-item">
+            <span class="app-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Otimização automática com <strong class="app-strong">resultados comprovados</strong></span>
+          </li>
+          <li class="app-feature-item">
+            <span class="app-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Tweaks de rede, CPU, GPU e memória com <strong class="app-strong">1 clique</strong></span>
+          </li>
+          <li class="app-feature-item">
+            <span class="app-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Mais de <strong class="app-strong">2.000 PCs otimizados</strong>. Zero reclamações.</span>
+          </li>
+          <li class="app-feature-item">
+            <span class="app-feature-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span>Interface simples — funciona em qualquer PC com <strong class="app-strong">Windows</strong></span>
+          </li>
+        </ul>
+
+        <div class="app-stats">
+          <div class="app-stat">
+            <strong>+180 FPS</strong>
+            <span>ganho médio</span>
+          </div>
+          <div class="app-stat-divider"></div>
+          <div class="app-stat">
+            <strong>&lt; 1 ms</strong>
+            <span>input lag</span>
+          </div>
+          <div class="app-stat-divider"></div>
+          <div class="app-stat">
+            <strong>2000+</strong>
+            <span>PCs otimizados</span>
+          </div>
+        </div>
+
+        <div class="app-cta-row">
+          <button class="brand-btn app-cta-btn" onclick="openTicket('orcamento')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>
+            Garantir minha vaga na pré-venda
+          </button>
+          <p class="app-cta-note">⚡ Pré-venda com condições especiais · Acesso vitalício ao app</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- ===== FIM SEÇÃO APP ===== -->
 
 
   <section id="faq">
